@@ -1,0 +1,1937 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Данил — Креативный копирайтер и концепт-мейкер</title>
+        <meta
+            name="description"
+            content="Портфолио креативного копирайтера и концепт-мейкера: идеи, слоганы, сценарии и кампании, которые вдохновляют людей на перемены."
+        />
+        <meta name="theme-color" content="#fafafa" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --color-bg: #080c0a;
+                --color-bg-secondary: #0c120e;
+                --color-surface: #111915;
+                --color-surface-hover: #16201a;
+                --color-text: #e6efe9;
+                --color-text-secondary: #7a9486;
+                --color-text-tertiary: #4a6a5a;
+                --color-border: rgba(74, 222, 128, 0.06);
+                --color-border-light: rgba(74, 222, 128, 0.12);
+                --color-accent: #4ade80;
+                --color-accent-light: #86efac;
+                --color-accent-dark: #22c55e;
+                --color-accent-glow: rgba(74, 222, 128, 0.25);
+                --color-accent-warm: #fbbf24;
+                --color-accent-warm-light: #fcd34d;
+                --color-highlight: #f59e0b;
+                --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+                --font-mono: "JetBrains Mono", monospace;
+                --max-width: 1120px;
+                --section-padding: clamp(4rem, 10vw, 8rem);
+                --glass-bg: rgba(12, 18, 14, 0.88);
+                --glass-border: rgba(74, 222, 128, 0.08);
+                --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            }
+
+            html {
+                scroll-behavior: smooth;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            body {
+                font-family: var(--font-sans);
+                background-color: var(--color-bg);
+                color: var(--color-text);
+                line-height: 1.6;
+                font-size: 1rem;
+                overflow-x: hidden;
+                background-image:
+                    radial-gradient(ellipse at 20% 50%, rgba(74, 222, 128, 0.04) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 20%, rgba(251, 191, 36, 0.03) 0%, transparent 50%),
+                    radial-gradient(ellipse at 50% 80%, rgba(74, 222, 128, 0.02) 0%, transparent 50%);
+            }
+
+            body::after {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0.025;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+                background-repeat: repeat;
+                background-size: 256px 256px;
+            }
+
+            /* ===== Utility ===== */
+            .container {
+                width: 100%;
+                max-width: var(--max-width);
+                margin: 0 auto;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+            }
+
+            /* ===== Fade-in Animation ===== */
+            .reveal {
+                opacity: 0;
+                transform: translateY(24px);
+                transition:
+                    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .reveal-delay-1 {
+                transition-delay: 0.1s;
+            }
+            .reveal-delay-2 {
+                transition-delay: 0.2s;
+            }
+            .reveal-delay-3 {
+                transition-delay: 0.3s;
+            }
+            .reveal-delay-4 {
+                transition-delay: 0.4s;
+            }
+
+            /* ===== Navigation ===== */
+            .nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                padding: 1.25rem 0;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .nav.scrolled {
+                background-color: var(--glass-bg);
+                backdrop-filter: blur(20px) saturate(140%);
+                -webkit-backdrop-filter: blur(20px) saturate(140%);
+                border-bottom: 1px solid var(--glass-border);
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 40px rgba(74, 222, 128, 0.03);
+                padding: 0.875rem 0;
+            }
+
+            .nav__inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .nav__logo {
+                font-family: var(--font-mono);
+                font-size: 0.9375rem;
+                font-weight: 600;
+                color: var(--color-text);
+                text-decoration: none;
+                letter-spacing: -0.03em;
+                position: relative;
+                padding: 0.25rem 0;
+            }
+
+            .nav__logo::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, var(--color-accent), var(--color-accent-warm));
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 0 8px var(--color-accent-glow);
+            }
+
+            .nav__logo:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+
+            .nav__logo:hover {
+                color: var(--color-accent);
+                text-shadow: 0 0 12px var(--color-accent-glow);
+            }
+
+            .nav__links {
+                display: flex;
+                gap: 2.5rem;
+                list-style: none;
+                align-items: center;
+            }
+
+            .nav__link {
+                font-size: 0.9375rem;
+                font-weight: 500;
+                color: var(--color-text-secondary);
+                text-decoration: none;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                position: relative;
+                padding: 0.25rem 0;
+            }
+
+            .nav__link::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, var(--color-accent), var(--color-accent-warm));
+                opacity: 0;
+                border-radius: 9999px;
+                transition: opacity 0.3s ease;
+                z-index: -1;
+            }
+
+            .nav__link::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--color-accent), var(--color-accent-warm));
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                transform: translateX(-50%);
+                border-radius: 9999px;
+                box-shadow: 0 0 6px var(--color-accent-glow);
+            }
+
+            .nav__link:hover {
+                color: var(--color-text);
+                transform: translateY(-1px);
+            }
+
+            .nav__link:hover::before {
+                opacity: 0.08;
+            }
+
+            .nav__link:hover::after {
+                width: 100%;
+            }
+
+            .nav__toggle {
+                display: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem;
+                color: var(--color-text);
+                position: relative;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 8px;
+                transition: background-color 0.2s ease;
+            }
+
+            .nav__toggle:hover {
+                background-color: rgba(74, 222, 128, 0.08);
+            }
+
+            .nav__toggle svg {
+                width: 1.375rem;
+                height: 1.375rem;
+            }
+
+            /* ===== Hero ===== */
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                padding-top: 6rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 5%;
+                right: 0%;
+                width: 600px;
+                height: 600px;
+                background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, transparent 60%);
+                border-radius: 50%;
+                pointer-events: none;
+                animation: pulse-glow 8s ease-in-out infinite;
+                filter: blur(40px);
+            }
+
+            .hero::after {
+                content: "";
+                position: absolute;
+                bottom: 10%;
+                left: 5%;
+                width: 500px;
+                height: 500px;
+                background: radial-gradient(circle, rgba(251, 191, 36, 0.06) 0%, transparent 60%);
+                border-radius: 50%;
+                pointer-events: none;
+                animation: pulse-glow 10s ease-in-out infinite reverse;
+                filter: blur(30px);
+            }
+
+            @keyframes pulse-glow {
+                0%, 100% { transform: scale(1); opacity: 0.6; }
+                50% { transform: scale(1.1); opacity: 1; }
+            }
+
+            .hero__content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4.5rem;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero__text {
+                max-width: 580px;
+            }
+
+            .hero__greeting {
+                font-family: var(--font-mono);
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: var(--color-accent);
+                margin-bottom: 1.5rem;
+                letter-spacing: 0.05em;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1.125rem;
+                background: rgba(74, 222, 128, 0.06);
+                border-radius: 9999px;
+                border: 1px solid rgba(74, 222, 128, 0.15);
+                box-shadow: 0 0 20px rgba(74, 222, 128, 0.05);
+            }
+
+            .hero__greeting::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                background: var(--color-accent);
+                border-radius: 50%;
+                animation: blink 2s ease-in-out infinite;
+                box-shadow: 0 0 8px var(--color-accent), 0 0 16px var(--color-accent-glow);
+            }
+
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.3; }
+            }
+
+            .hero__name {
+                font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+                font-weight: 800;
+                line-height: 1.05;
+                letter-spacing: -0.04em;
+                margin-bottom: 1.5rem;
+                color: var(--color-text);
+            }
+
+            .hero__name span {
+                display: inline-block;
+                background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-warm) 50%, var(--color-accent-light) 100%);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: gradient-shift 4s ease-in-out infinite;
+                filter: drop-shadow(0 0 20px var(--color-accent-glow));
+            }
+
+            @keyframes gradient-shift {
+                0%, 100% { background-position: 0% center; }
+                50% { background-position: 100% center; }
+            }
+
+            .hero__tagline {
+                font-size: 1.1875rem;
+                color: var(--color-text-secondary);
+                line-height: 1.8;
+                margin-bottom: 2.25rem;
+                max-width: 500px;
+                font-weight: 400;
+            }
+
+            .hero__cta {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.625rem;
+                padding: 1rem 2.25rem;
+                background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+                color: var(--color-bg);
+                text-decoration: none;
+                font-size: 0.9375rem;
+                font-weight: 700;
+                border-radius: 9999px;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 4px 20px rgba(74, 222, 128, 0.25), 0 0 40px rgba(74, 222, 128, 0.1);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero__cta::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, var(--color-accent-warm), var(--color-highlight));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .hero__cta:hover::before {
+                opacity: 1;
+            }
+
+            .hero__cta:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 32px rgba(74, 222, 128, 0.35), 0 0 60px rgba(74, 222, 128, 0.15);
+            }
+
+            .hero__cta span,
+            .hero__cta svg {
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero__cta svg {
+                width: 1.125rem;
+                height: 1.125rem;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .hero__cta:hover svg {
+                transform: translateX(3px);
+            }
+
+            .hero__visual {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+            }
+
+            .hero__avatar-wrapper {
+                position: relative;
+                width: clamp(260px, 22vw, 340px);
+                height: clamp(260px, 22vw, 340px);
+            }
+
+            .hero__avatar {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+                border-radius: 50%;
+                position: relative;
+                z-index: 1;
+                box-shadow: 0 20px 60px rgba(74, 222, 128, 0.12), 0 0 80px rgba(74, 222, 128, 0.06);
+            }
+
+            .hero__avatar-ring {
+                position: absolute;
+                top: -16px;
+                left: -16px;
+                right: -16px;
+                bottom: -16px;
+                border: 2px solid transparent;
+                border-radius: 50%;
+                animation: rotate 35s linear infinite;
+                background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+                            linear-gradient(135deg, var(--color-accent), var(--color-accent-warm)) border-box;
+                opacity: 0.7;
+            }
+
+            .hero__avatar-ring::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 12px;
+                height: 12px;
+                background: linear-gradient(135deg, var(--color-accent), var(--color-accent-warm));
+                border-radius: 50%;
+                transform: translateX(-50%);
+                box-shadow: 0 0 16px var(--color-accent), 0 0 32px var(--color-accent-glow);
+            }
+
+            .hero__avatar-ring-2 {
+                position: absolute;
+                top: -32px;
+                left: -32px;
+                right: -32px;
+                bottom: -32px;
+                border: 1.5px dashed var(--color-border);
+                border-radius: 50%;
+                animation: rotate 50s linear infinite reverse;
+                opacity: 0.4;
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* ===== Section Common ===== */
+            .section {
+                padding: var(--section-padding) 0;
+                position: relative;
+            }
+
+            .section__header {
+                margin-bottom: 3.5rem;
+            }
+
+            .section__label {
+                font-family: var(--font-mono);
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: var(--color-accent);
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                margin-bottom: 1rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.375rem 0.875rem;
+                background: rgba(74, 222, 128, 0.06);
+                border-radius: 9999px;
+                border: 1px solid rgba(74, 222, 128, 0.12);
+                box-shadow: 0 0 16px rgba(74, 222, 128, 0.04);
+            }
+
+            .section__label::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                background: var(--color-accent);
+                border-radius: 50%;
+                box-shadow: 0 0 8px var(--color-accent);
+            }
+
+            .section__title {
+                font-size: clamp(2rem, 3.5vw, 2.75rem);
+                font-weight: 800;
+                letter-spacing: -0.03em;
+                line-height: 1.15;
+                color: var(--color-text);
+            }
+
+            .section__subtitle {
+                font-size: 1.0625rem;
+                color: var(--color-text-secondary);
+                margin-top: 1rem;
+                max-width: 600px;
+                line-height: 1.7;
+            }
+
+            /* ===== Portfolio ===== */
+            .portfolio {
+                background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 50%, var(--color-bg) 100%);
+            }
+
+            .portfolio__grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .portfolio__item {
+                position: relative;
+                background: var(--color-surface);
+                border: 1px solid var(--color-border);
+                border-radius: 16px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            }
+
+            .portfolio__item:hover {
+                border-color: var(--color-border-light);
+                transform: translateY(-6px) scale(1.01);
+                box-shadow:
+                    0 20px 40px rgba(0, 0, 0, 0.4),
+                    0 0 40px rgba(74, 222, 128, 0.06),
+                    0 0 0 1px var(--color-border-light);
+            }
+
+            .portfolio__item-image-wrapper {
+                width: 100%;
+                display: block;
+                background: linear-gradient(135deg, rgba(74, 222, 128, 0.03), rgba(251, 191, 36, 0.02));
+                position: relative;
+                overflow: hidden;
+            }
+
+            .portfolio__item-image-wrapper::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, transparent 0%, rgba(74, 222, 128, 0.04) 100%);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .portfolio__item:hover .portfolio__item-image-wrapper::after {
+                opacity: 1;
+            }
+
+            .portfolio__item-image {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .portfolio__item:hover .portfolio__item-image {
+                transform: scale(1.03);
+            }
+
+            .portfolio__item-info {
+                padding: 1.25rem 1.5rem 1.5rem;
+            }
+
+            .portfolio__item-title {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--color-text);
+                margin-bottom: 0.375rem;
+                letter-spacing: -0.02em;
+            }
+
+            .portfolio__item-desc {
+                font-size: 0.875rem;
+                color: var(--color-text-secondary);
+                line-height: 1.6;
+                margin-bottom: 0.75rem;
+            }
+
+            .portfolio__item-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+                font-family: var(--font-mono);
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: var(--color-accent);
+                letter-spacing: 0.03em;
+                padding: 0.375rem 0.875rem;
+                background: rgba(74, 222, 128, 0.06);
+                border-radius: 9999px;
+                border: 1px solid rgba(74, 222, 128, 0.12);
+            }
+
+            .portfolio__item-tag::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                background: var(--color-accent);
+                border-radius: 50%;
+                box-shadow: 0 0 6px var(--color-accent);
+            }
+
+            /* ===== About ===== */
+            .about__content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4.5rem;
+                align-items: start;
+            }
+
+            .about__text {
+                font-size: 1.0625rem;
+                color: var(--color-text-secondary);
+                line-height: 1.9;
+            }
+
+            .about__text p {
+                margin-bottom: 1.5rem;
+            }
+
+            .about__text strong {
+                color: var(--color-text);
+                font-weight: 650;
+            }
+
+            .about__quote {
+                padding: 2rem;
+                background: rgba(74, 222, 128, 0.03);
+                border-left: 3px solid var(--color-accent);
+                border-radius: 0 12px 12px 0;
+                font-style: italic;
+                color: var(--color-text-secondary);
+                box-shadow: 0 0 30px rgba(74, 222, 128, 0.03), inset 0 0 30px rgba(74, 222, 128, 0.01);
+            }
+
+            /* ===== Experience ===== */
+            .experience {
+                background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 50%, var(--color-bg) 100%);
+            }
+
+            .experience__timeline {
+                position: relative;
+                padding-left: 2.5rem;
+            }
+
+            .experience__timeline::before {
+                content: "";
+                position: absolute;
+                left: 7px;
+                top: 0.5rem;
+                bottom: 0.5rem;
+                width: 2px;
+                background: linear-gradient(180deg, var(--color-accent), var(--color-accent-warm));
+                border-radius: 9999px;
+                opacity: 0.25;
+                box-shadow: 0 0 8px var(--color-accent-glow);
+            }
+
+            .experience__item {
+                position: relative;
+                padding-bottom: 3rem;
+            }
+
+            .experience__item:last-child {
+                padding-bottom: 0;
+            }
+
+            .experience__item::before {
+                content: "";
+                position: absolute;
+                left: -2.5rem;
+                top: 0.5rem;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: var(--color-surface);
+                border: 3px solid var(--color-accent);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.06);
+            }
+
+            .experience__item:hover::before {
+                background: var(--color-accent);
+                box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.12), 0 0 20px var(--color-accent-glow);
+                transform: scale(1.1);
+            }
+
+            .experience__item:first-child::before {
+                background: linear-gradient(135deg, var(--color-accent), var(--color-accent-warm));
+                box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.15), 0 0 24px var(--color-accent-glow);
+            }
+
+            .experience__period {
+                font-family: var(--font-mono);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                color: var(--color-accent);
+                margin-bottom: 0.5rem;
+                padding: 0.25rem 0.75rem;
+                background: rgba(74, 222, 128, 0.06);
+                display: inline-block;
+                border-radius: 9999px;
+            }
+
+            .experience__role {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 0.375rem;
+                letter-spacing: -0.02em;
+            }
+
+            .experience__company {
+                font-size: 0.9375rem;
+                font-weight: 600;
+                color: var(--color-accent);
+                margin-bottom: 0.75rem;
+            }
+
+            .experience__description {
+                font-size: 0.9375rem;
+                color: var(--color-text-secondary);
+                line-height: 1.8;
+            }
+
+            /* ===== Education ===== */
+            .education__grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .education__card {
+                padding: 2rem;
+                background: var(--color-surface);
+                border-radius: 16px;
+                border: 1px solid var(--color-border);
+                transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .education__card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, var(--color-accent), var(--color-accent-warm));
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 0 10px var(--color-accent-glow);
+            }
+
+            .education__card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .education__card:hover {
+                border-color: var(--color-border-light);
+                transform: translateY(-4px);
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(74, 222, 128, 0.06);
+            }
+
+            .education__period {
+                font-family: var(--font-mono);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                color: var(--color-accent);
+                margin-bottom: 0.875rem;
+                display: inline-block;
+                padding: 0.25rem 0.75rem;
+                background: rgba(74, 222, 128, 0.06);
+                border-radius: 9999px;
+            }
+
+            .education__degree {
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: var(--color-accent);
+                margin-bottom: 0.5rem;
+            }
+
+            .education__name {
+                font-size: 1.125rem;
+                font-weight: 700;
+                margin-bottom: 0.875rem;
+                letter-spacing: -0.02em;
+            }
+
+            .education__desc {
+                font-size: 0.9375rem;
+                color: var(--color-text-secondary);
+                line-height: 1.7;
+            }
+
+            /* ===== Skills ===== */
+            .skills {
+                background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 50%, var(--color-bg) 100%);
+            }
+
+            .skills__grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .skill {
+                padding: 2rem;
+                border-radius: 16px;
+                border: 1px solid var(--color-border);
+                transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+                position: relative;
+                overflow: hidden;
+                background: var(--color-surface);
+            }
+
+            .skill::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, rgba(74, 222, 128, 0.02), rgba(251, 191, 36, 0.02));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .skill:hover {
+                border-color: var(--color-border-light);
+                transform: translateY(-6px);
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(74, 222, 128, 0.06);
+            }
+
+            .skill:hover::before {
+                opacity: 1;
+            }
+
+            .skill__number {
+                font-family: var(--font-mono);
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--color-accent);
+                margin-bottom: 1rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.5rem;
+                height: 2.5rem;
+                background: rgba(74, 222, 128, 0.08);
+                border-radius: 8px;
+                border: 1px solid rgba(74, 222, 128, 0.12);
+                box-shadow: 0 0 12px rgba(74, 222, 128, 0.08);
+            }
+
+            .skill__name {
+                font-size: 1.0625rem;
+                font-weight: 700;
+                margin-bottom: 0.625rem;
+                letter-spacing: -0.02em;
+                position: relative;
+                z-index: 1;
+            }
+
+            .skill__desc {
+                font-size: 0.9375rem;
+                color: var(--color-text-secondary);
+                line-height: 1.7;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* ===== Contact ===== */
+            .contact__content {
+                text-align: center;
+                max-width: 680px;
+                margin: 0 auto;
+            }
+
+            .contact__text {
+                font-size: 1.1875rem;
+                color: var(--color-text-secondary);
+                line-height: 1.8;
+                margin-bottom: 3rem;
+                font-weight: 400;
+            }
+
+            .contact__links {
+                display: flex;
+                justify-content: center;
+                gap: 1.25rem;
+                flex-wrap: wrap;
+                margin-bottom: 3rem;
+            }
+
+            .contact__link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 1rem 1.75rem;
+                background: var(--color-surface);
+                border: 1px solid var(--color-border);
+                border-radius: 9999px;
+                text-decoration: none;
+                font-size: 0.9375rem;
+                font-weight: 600;
+                color: var(--color-text);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .contact__link::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, var(--color-accent), var(--color-accent-warm));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .contact__link:hover::before {
+                opacity: 1;
+            }
+
+            .contact__link:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 32px rgba(74, 222, 128, 0.2), 0 0 40px rgba(74, 222, 128, 0.08);
+                border-color: transparent;
+            }
+
+            .contact__link span,
+            .contact__link svg {
+                position: relative;
+                z-index: 1;
+            }
+
+            .contact__link svg {
+                width: 1.125rem;
+                height: 1.125rem;
+                color: var(--color-accent);
+                transition: color 0.4s ease;
+            }
+
+            .contact__link:hover svg {
+                color: #ffffff;
+            }
+
+            /* ===== Footer ===== */
+            .footer {
+                padding: 2rem 0;
+                border-top: 1px solid var(--color-border);
+                background: var(--color-bg-secondary);
+            }
+
+            .footer__inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .footer__copy {
+                font-size: 0.8125rem;
+                color: var(--color-text-tertiary);
+            }
+
+            .footer__credit {
+                font-size: 0.8125rem;
+                color: var(--color-text-tertiary);
+            }
+
+            .footer__credit a {
+                color: var(--color-text-tertiary);
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+
+            .footer__credit a:hover {
+                color: var(--color-accent);
+            }
+
+            .footer__back {
+                font-size: 0.8125rem;
+                color: var(--color-text-tertiary);
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+                transition: color 0.2s ease;
+            }
+
+            .footer__back:hover {
+                color: var(--color-accent);
+                text-shadow: 0 0 8px var(--color-accent-glow);
+            }
+
+            .footer__back svg {
+                width: 0.875rem;
+                height: 0.875rem;
+                transition: transform 0.2s ease;
+            }
+
+            .footer__back:hover svg {
+                transform: translateY(-2px);
+            }
+
+            /* ===== Lightbox ===== */
+            .lightbox {
+                position: fixed;
+                inset: 0;
+                z-index: 200;
+                background-color: rgba(8, 12, 10, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transition:
+                    opacity 0.3s ease,
+                    visibility 0.3s ease;
+                cursor: pointer;
+            }
+
+            .lightbox.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .lightbox__image {
+                max-width: 90vw;
+                max-height: 85vh;
+                object-fit: contain;
+                border-radius: 8px;
+                transform: scale(0.95);
+                transition: transform 0.3s ease;
+            }
+
+            .lightbox.active .lightbox__image {
+                transform: scale(1);
+            }
+
+            .lightbox__close {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                color: var(--color-text);
+                cursor: pointer;
+                padding: 0.5rem;
+                opacity: 0.7;
+                transition: opacity 0.2s ease;
+            }
+
+            .lightbox__close:hover {
+                opacity: 1;
+                color: var(--color-accent);
+            }
+
+            .lightbox__close svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            /* ===== Responsive ===== */
+            @media (max-width: 1024px) {
+                .hero__content {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                    gap: 3rem;
+                }
+
+                .hero__text {
+                    max-width: 100%;
+                    order: 2;
+                }
+
+                .hero__tagline {
+                    max-width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .hero__visual {
+                    order: 1;
+                }
+
+                .about__content {
+                    grid-template-columns: 1fr;
+                    gap: 2.5rem;
+                }
+
+                .skills__grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .nav__links {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: var(--color-bg);
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 2.5rem;
+                    z-index: 99;
+                }
+
+                .nav__links.open {
+                    display: flex;
+                }
+
+                .nav__link {
+                    font-size: 1.25rem;
+                }
+
+                .nav__toggle {
+                    display: block;
+                    z-index: 101;
+                }
+
+                .portfolio__grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .education__grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .skills__grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .contact__links {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .footer__inner {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
+                }
+
+                .hero__avatar-wrapper {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero__name {
+                    font-size: 2rem;
+                }
+
+                .section__title {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="nav" role="navigation" aria-label="Основная навигация">
+            <div class="container nav__inner">
+                <a href="#hero" class="nav__logo">chadkiduknow</a>
+                <ul class="nav__links" id="navLinks">
+                    <li>
+                        <a href="#portfolio" class="nav__link" data-nav
+                            >Работы</a
+                        >
+                    </li>
+                    <li>
+                        <a href="#about" class="nav__link" data-nav>Обо мне</a>
+                    </li>
+                    <li>
+                        <a href="#experience" class="nav__link" data-nav
+                            >Опыт</a
+                        >
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav__link" data-nav
+                            >Контакты</a
+                        >
+                    </li>
+                </ul>
+                <button
+                    class="nav__toggle"
+                    id="navToggle"
+                    aria-label="Открыть меню"
+                    aria-expanded="false"
+                >
+                    <svg
+                        id="menuIcon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    >
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <svg
+                        id="closeIcon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        style="display: none"
+                    >
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="container hero__content">
+                <div class="hero__text">
+                    <p class="hero__greeting reveal">Привет, я — Данил</p>
+                    <h1 class="hero__name reveal reveal-delay-1">
+                        Создаю <span>впечатления</span>
+                    </h1>
+                    <p class="hero__tagline reveal reveal-delay-2">
+                        Креативный копирайтер и концепт-мейкер. Пишу и придумываю
+                        то, что вдохновляет людей на перемены.
+                    </p>
+                    <a
+                        href="#portfolio"
+                        class="hero__cta reveal reveal-delay-3"
+                    >
+                        Смотреть работы
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                <div class="hero__visual reveal reveal-delay-2">
+                    <div class="hero__avatar-wrapper">
+                        <div class="hero__avatar-ring"></div>
+                        <div class="hero__avatar-ring-2"></div>
+                        <img
+                            src="assets/avatar.webp"
+                            alt="Данил — креативный копирайтер"
+                            class="hero__avatar"
+                            loading="eager"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section class="section portfolio" id="portfolio">
+            <div class="container">
+                <header class="section__header reveal">
+                    <p class="section__label">Портфолио</p>
+                    <h2 class="section__title">Избранные кейсы</h2>
+                    <p class="section__subtitle">
+                        Борды, принты и концепции для Яндекс.GO, LEGO, Tabasco,
+                        Chupa Chups и других брендов.
+                    </p>
+                </header>
+                <div class="portfolio__grid">
+                    <article class="portfolio__item reveal" data-lightbox="p1">
+                        <div class="portfolio__item-image-wrapper">
+                            <img
+                                src="assets/p1.webp"
+                                alt="Яндекс.Музыка — Будущее, которое, скорее всего, вам понравится"
+                                class="portfolio__item-image"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="portfolio__item-info">
+                            <h3 class="portfolio__item-title">Яндекс.Музыка</h3>
+                            <p class="portfolio__item-desc">
+                                Наружная реклама. Коммуникация, которая показывает,
+                                как точно алгоритмы находят музыку именно вам.
+                            </p>
+                            <span class="portfolio__item-tag">Борд · 2024</span>
+                        </div>
+                    </article>
+                    <article
+                        class="portfolio__item reveal reveal-delay-1"
+                        data-lightbox="p2"
+                    >
+                        <div class="portfolio__item-image-wrapper">
+                            <img
+                                src="assets/p2.webp"
+                                alt="Яндекс.GO — GOГИД"
+                                class="portfolio__item-image"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="portfolio__item-info">
+                            <h3 class="portfolio__item-title">Яндекс.GO</h3>
+                            <p class="portfolio__item-desc">
+                                GOГИД. Концепция, которая учит пользователей
+                                пользоваться всеми сервисами GO, а не только
+                                такси.
+                            </p>
+                            <span class="portfolio__item-tag"
+                                >Концепт · 2024</span
+                            >
+                        </div>
+                    </article>
+                    <article class="portfolio__item reveal" data-lightbox="p3">
+                        <div class="portfolio__item-image-wrapper">
+                            <img
+                                src="assets/p3.webp"
+                                alt="LEGO — Принт"
+                                class="portfolio__item-image"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="portfolio__item-info">
+                            <h3 class="portfolio__item-title">LEGO</h3>
+                            <p class="portfolio__item-desc">
+                                Графические принты на тему творчества и воображения.
+                            </p>
+                            <span class="portfolio__item-tag"
+                                >Принт · 2024</span
+                            >
+                        </article>
+                        <article
+                            class="portfolio__item reveal reveal-delay-1"
+                            data-lightbox="p4"
+                        >
+                            <div class="portfolio__item-image-wrapper">
+                                <img
+                                    src="assets/p4.webp"
+                                    alt="Tabasco — Принт"
+                                    class="portfolio__item-image"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="portfolio__item-info">
+                                <h3 class="portfolio__item-title">Tabasco</h3>
+                                <p class="portfolio__item-desc">
+                                    Остроумная графика в духе бренда.
+                                </p>
+                                <span class="portfolio__item-tag"
+                                    >Принт · 2024</span
+                            >
+                            </div>
+                        </article>
+                        <article class="portfolio__item reveal" data-lightbox="p5">
+                            <div class="portfolio__item-image-wrapper">
+                                <img
+                                    src="assets/p5.webp"
+                                    alt="Chupa Chups — Принт"
+                                    class="portfolio__item-image"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="portfolio__item-info">
+                                <h3 class="portfolio__item-title">Chupa Chups</h3>
+                                <p class="portfolio__item-desc">
+                                    Яркие принты, вдохновлённые беззаботностью бренда.
+                                </p>
+                                <span class="portfolio__item-tag"
+                                    >Принт · 2024</span
+                            >
+                            </div>
+                        </article>
+                        <article
+                            class="portfolio__item reveal reveal-delay-1"
+                            data-lightbox="p6"
+                        >
+                            <div class="portfolio__item-image-wrapper">
+                                <img
+                                    src="assets/p6.webp"
+                                    alt="Duracell — Принт"
+                                    class="portfolio__item-image"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="portfolio__item-info">
+                                <h3 class="portfolio__item-title">Duracell</h3>
+                                <p class="portfolio__item-desc">
+                                    Энергичный дизайн, который заряжает с первого
+                                    взгляда.
+                                </p>
+                                <span class="portfolio__item-tag"
+                                    >Принт · 2024</span
+                            >
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="container">
+                <header class="section__header reveal">
+                    <p class="section__label">Обо мне</p>
+                    <h2 class="section__title">
+                        Креатив как способ менять мир
+                    </h2>
+                </header>
+                <div class="about__content">
+                    <div class="about__text reveal">
+                        <p>
+                            <strong>Придумываю</strong> идеи, кампании и
+                            геймификации. Пишу лонгриды, сценарии, слоганы,
+                            имена брендов и даже рэп.
+                        </p>
+                        <p>
+                            В свободное время ищу вдохновение в фильмах,
+                            сериалах и сюжетных играх. Изучаю этику, психологию,
+                            философию сознания и экзистенциализм. Читаю
+                            художественную литературу, хожу на арт-выставки,
+                            езжу на велопоходы и учусь нескучно фотографировать.
+                        </p>
+                        <p>
+                            Диплом с отличием СПбГУТРИ (Реклама и PR). Регулярно
+                            выступал на конференциях и участвовал во
+                            всероссийских рекламных конкурсах — шорт-листы LIME
+                            и Young Mercury. Тема диплома:
+                            <strong>интерактивный сторителлинг в
+                                интернет-видеорекламе</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="section experience" id="experience">
+            <div class="container">
+                <header class="section__header reveal">
+                    <p class="section__label">Опыт</p>
+                    <h2 class="section__title">Чем занимался</h2>
+                </header>
+                <div class="experience__timeline">
+                    <div class="experience__item reveal">
+                        <p class="experience__period">
+                            Сентябрь 2024 — настоящее время
+                        </p>
+                        <h3 class="experience__role">Креативный копирайтер</h3>
+                        <p class="experience__company">Агентство Protein</p>
+                        <p class="experience__description">
+                            Разработка креативных концепций, слоганов и сценариев
+                            для рекламных кампаний.
+                        </p>
+                    </div>
+                    <div class="experience__item reveal">
+                        <p class="experience__period">Ноябрь 2022 — Май 2024</p>
+                        <h3 class="experience__role">
+                            Ассистент продюсера / Сценарист
+                        </h3>
+                        <p class="experience__company">ПЦ «Вдохновители»</p>
+                        <p class="experience__description">
+                            Разработка концепций для молодёжных аудиовизуальных
+                            проектов. Сценарии, редактирование, нейминг, логлайны,
+                            слоганы. Презентации. Подготовка материалов для
+                            грантовых заявок.
+                        </p>
+                    </div>
+                    <div class="experience__item reveal">
+                        <p class="experience__period">Май 2021 — Июль 2021</p>
+                        <h3 class="experience__role">Копирайтер</h3>
+                        <p class="experience__company">Агентство FPR</p>
+                        <p class="experience__description">
+                            Контент для соцсетей, нейминг, креативы, сценарии.
+                        </p>
+                    </div>
+                    <div class="experience__item reveal">
+                        <p class="experience__period">
+                            Июнь 2020 — Август 2020
+                        </p>
+                        <h3 class="experience__role">Фандрайзер</h3>
+                        <p class="experience__company">WeMake</p>
+                        <p class="experience__description">
+                            Разработал креативную концепцию имиджевого ролика
+                            для МТС Банка. Публичные выступления и прямые продажи.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section" id="education">
+            <div class="container">
+                <header class="section__header reveal">
+                    <p class="section__label">Образование</p>
+                    <h2 class="section__title">Чему обучен</h2>
+                </header>
+                <div class="education__grid">
+                    <div class="education__card reveal">
+                        <p class="education__period">2023 — 2024</p>
+                        <p class="education__degree">Дополнительное образование</p>
+                        <h3 class="education__name">
+                            Академия коммуникаций Wordshop
+                        </h3>
+                        <p class="education__desc">
+                            Креатив: копирайтинг и арт-дирекшен. Нейминг,
+                            концептинг, фестивальная реклама, работа с
+                            клиентскими брифами.
+                        </p>
+                    </div>
+                    <div class="education__card reveal reveal-delay-1">
+                        <p class="education__period">2018 — 2022</p>
+                        <p class="education__degree">
+                            Бакалавр · Диплом с отличием
+                        </p>
+                        <h3 class="education__name">
+                            СПбГУТРИ им. проф. М.А. Бонч-Бруевича
+                        </h3>
+                        <p class="education__desc">
+                            Реклама и PR. Шорт-листы LIME, Young Mercury. Диплом
+                            на тему интерактивного сторителлинга в
+                            интернет-видеорекламе.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section skills" id="skills">
+            <div class="container">
+                <header class="section__header reveal">
+                    <p class="section__label">Навыки</p>
+                    <h2 class="section__title">Чем владею</h2>
+                </header>
+                <div class="skills__grid">
+                    <div class="skill reveal">
+                        <p class="skill__number">01</p>
+                        <h3 class="skill__name">Концептинг</h3>
+                        <p class="skill__desc">
+                            Большие идеи, геймификации, креативные концепции,
+                            360-кампании и сюжеты для видео.
+                        </p>
+                    </div>
+                    <div class="skill reveal reveal-delay-1">
+                        <p class="skill__number">02</p>
+                        <h3 class="skill__name">Копирайтинг</h3>
+                        <p class="skill__desc">
+                            Нейминг, слоганы, заголовки, сценарии, лонгриды.
+                        </p>
+                    </div>
+                    <div class="skill reveal reveal-delay-2">
+                        <p class="skill__number">03</p>
+                        <h3 class="skill__name">Презентации</h3>
+                        <p class="skill__desc">
+                            Публичные выступления. Профессиональный курс дизайна
+                            презентаций от Bonnie &amp; Slide.
+                        </p>
+                    </div>
+                    <div class="skill reveal">
+                        <p class="skill__number">04</p>
+                        <h3 class="skill__name">Английский B2</h3>
+                        <p class="skill__desc">
+                            Upper intermediate. Работа с международными
+                            материалами.
+                        </p>
+                    </div>
+                    <div class="skill reveal reveal-delay-1">
+                        <p class="skill__number">05</p>
+                        <h3 class="skill__name">SMM</h3>
+                        <p class="skill__desc">
+                            Контент-стратегии, ведение соцсетей, Tone of Voice.
+                        </p>
+                    </div>
+                    <div class="skill reveal reveal-delay-2">
+                        <p class="skill__number">06</p>
+                        <h3 class="skill__name">Vegas Pro / Adobe Photoshop</h3>
+                        <p class="skill__desc">
+                            Видеомонтаж и графический дизайн.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="container">
+                <header
+                    class="section__header reveal"
+                    style="text-align: center"
+                >
+                    <p class="section__label">Контакты</p>
+                    <h2 class="section__title">
+                        Давайте создадим что-то вместе
+                    </h2>
+                </header>
+                <div class="contact__content reveal reveal-delay-1">
+                    <p class="contact__text">
+                        Готов к предложениям по креативным проектам, копирайтингу
+                        и концепт-дизайну. Напишите мне — обсудим вашу задачу.
+                    </p>
+                    <div class="contact__links">
+                        <a
+                            href="mailto:chadkiduknow@gmail.com"
+                            class="contact__link"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                                ></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            Email
+                        </a>
+                        <a
+                            href="https://t.me/chadkiduknow"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact__link"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon
+                                    points="22 2 15 22 11 13 2 9 22 2"
+                                ></polygon>
+                            </svg>
+                            Telegram
+                        </a>
+                        <a href="tel:+79817563186" class="contact__link">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                                ></path>
+                            </svg>
+                            Телефон
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer__inner">
+                <p class="footer__copy">© 2026 Данил. Все права защищены.</p>
+                <p class="footer__credit">Дизайн и разработка — <a href="https://dikanta.ru" target="_blank" rel="noopener noreferrer">Dikanta</a></p>
+                <a href="#hero" class="footer__back">
+                    Наверх
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                        <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </footer>
+
+        <!-- Lightbox -->
+        <div
+            class="lightbox"
+            id="lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Просмотр изображения"
+        >
+            <button
+                class="lightbox__close"
+                id="lightboxClose"
+                aria-label="Закрыть"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <img src="" alt="" class="lightbox__image" id="lightboxImage" />
+        </div>
+
+        <script>
+            // ===== Scroll Reveal =====
+            const revealElements = document.querySelectorAll(".reveal");
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -40px 0px",
+                },
+            );
+
+            revealElements.forEach((el) => revealObserver.observe(el));
+
+            // ===== Navbar Scroll Effect =====
+            const nav = document.querySelector(".nav");
+            let lastScroll = 0;
+
+            window.addEventListener(
+                "scroll",
+                () => {
+                    const currentScroll = window.pageYOffset;
+                    if (currentScroll > 50) {
+                        nav.classList.add("scrolled");
+                    } else {
+                        nav.classList.remove("scrolled");
+                    }
+                    lastScroll = currentScroll;
+                },
+                { passive: true },
+            );
+
+            // ===== Mobile Navigation =====
+            const navToggle = document.getElementById("navToggle");
+            const navLinks = document.getElementById("navLinks");
+            const menuIcon = document.getElementById("menuIcon");
+            const closeIcon = document.getElementById("closeIcon");
+            const navLinkItems = document.querySelectorAll("[data-nav]");
+
+            function toggleMenu() {
+                const isOpen = navLinks.classList.contains("open");
+                navLinks.classList.toggle("open");
+                menuIcon.style.display = isOpen ? "block" : "none";
+                closeIcon.style.display = isOpen ? "none" : "block";
+                navToggle.setAttribute("aria-expanded", !isOpen);
+                document.body.style.overflow = isOpen ? "" : "hidden";
+            }
+
+            navToggle.addEventListener("click", toggleMenu);
+
+            navLinkItems.forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (navLinks.classList.contains("open")) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // ===== Lightbox =====
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImage = document.getElementById("lightboxImage");
+            const lightboxClose = document.getElementById("lightboxClose");
+            const portfolioItems = document.querySelectorAll("[data-lightbox]");
+
+            function openLightbox(src, alt) {
+                lightboxImage.src = src;
+                lightboxImage.alt = alt;
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("active");
+                document.body.style.overflow = "";
+                setTimeout(() => {
+                    lightboxImage.src = "";
+                    lightboxImage.alt = "";
+                }, 300);
+            }
+
+            portfolioItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    const img = item.querySelector("img");
+                    openLightbox(img.src, img.alt);
+                });
+            });
+
+            lightboxClose.addEventListener("click", (e) => {
+                e.stopPropagation();
+                closeLightbox();
+            });
+
+            lightbox.addEventListener("click", (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (
+                    e.key === "Escape" &&
+                    lightbox.classList.contains("active")
+                ) {
+                    closeLightbox();
+                }
+            });
+
+            // ===== Smooth Scroll for Anchor Links =====
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(
+                        this.getAttribute("href"),
+                    );
+                    if (target) {
+                        const offset = 80;
+                        const top =
+                            target.getBoundingClientRect().top +
+                            window.pageYOffset -
+                            offset;
+                        window.scrollTo({ top, behavior: "smooth" });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

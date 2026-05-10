@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Elena Voss — Fine Art Photography</title>
+        <meta
+            name="description"
+            content="Elena Voss captures light, shadow, and emotion through a minimalist lens. Fine art and editorial photography from a Munich-based artist."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            @layer base {
+                html {
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+                body {
+                    background-color: #0a0a0a;
+                    color: #ffffff;
+                }
+            }
+            @layer components {
+                .fade-in {
+                    opacity: 0;
+                    transform: translateY(24px);
+                    transition:
+                        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                .fade-in.visible {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                .fade-in-delay-1 {
+                    transition-delay: 100ms;
+                }
+                .fade-in-delay-2 {
+                    transition-delay: 200ms;
+                }
+                .fade-in-delay-3 {
+                    transition-delay: 300ms;
+                }
+                .image-reveal {
+                    position: relative;
+                    overflow: hidden;
+                }
+                .image-reveal::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background: #0a0a0a;
+                    transform-origin: right;
+                    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                .image-reveal.revealed::after {
+                    transform: scaleX(0);
+                }
+                .nav-link {
+                    position: relative;
+                }
+                .nav-link::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background: #ffffff;
+                    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                .nav-link:hover::after {
+                    width: 100%;
+                }
+            }
+            @layer utilities {
+                .text-balance {
+                    text-wrap: balance;
+                }
+            }
+        </style>
+    </head>
+    <body class="font-body font-light tracking-wide">
+        <!-- Navigation -->
+        <nav
+            id="nav"
+            class="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 md:py-8 transition-all duration-500"
+        >
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a
+                    href="#hero"
+                    class="font-display text-lg md:text-xl tracking-widest uppercase"
+                    >Elena Voss</a
+                >
+                <div class="hidden md:flex items-center gap-10">
+                    <a
+                        href="#work"
+                        class="nav-link text-xs uppercase tracking-widest text-gray-300 hover:text-white transition-colors"
+                        >Work</a
+                    >
+                    <a
+                        href="#about"
+                        class="nav-link text-xs uppercase tracking-widest text-gray-300 hover:text-white transition-colors"
+                        >About</a
+                    >
+                    <a
+                        href="#contact"
+                        class="nav-link text-xs uppercase tracking-widest text-gray-300 hover:text-white transition-colors"
+                        >Contact</a
+                    >
+                </div>
+                <button
+                    id="menu-toggle"
+                    class="md:hidden flex flex-col gap-1.5 p-2"
+                    aria-label="Toggle menu"
+                >
+                    <span
+                        class="block w-6 h-px bg-white transition-all duration-300"
+                        id="menu-line-1"
+                    ></span>
+                    <span
+                        class="block w-6 h-px bg-white transition-all duration-300"
+                        id="menu-line-2"
+                    ></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div
+            id="mobile-menu"
+            class="fixed inset-0 z-40 bg-black flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500"
+        >
+            <div class="flex flex-col items-center gap-8">
+                <a
+                    href="#work"
+                    class="mobile-nav-link font-display text-3xl tracking-widest uppercase text-white"
+                    >Work</a
+                >
+                <a
+                    href="#about"
+                    class="mobile-nav-link font-display text-3xl tracking-widest uppercase text-white"
+                    >About</a
+                >
+                <a
+                    href="#contact"
+                    class="mobile-nav-link font-display text-3xl tracking-widest uppercase text-white"
+                    >Contact</a
+                >
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section
+            id="hero"
+            class="relative min-h-screen flex items-center justify-center overflow-hidden"
+        >
+            <div class="absolute inset-0">
+                <img
+                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80"
+                    alt="Minimal landscape with dramatic lighting"
+                    class="w-full h-full object-cover opacity-40 scale-105"
+                    id="hero-image"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black"
+                ></div>
+            </div>
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                <p
+                    class="text-xs uppercase tracking-[0.3em] text-gray-300 mb-6 fade-in"
+                >
+                    Fine Art Photography
+                </p>
+                <h1
+                    class="font-display text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 fade-in fade-in-delay-1 text-balance"
+                >
+                    Where Light<br />Meets Silence
+                </h1>
+                <p
+                    class="font-accent text-xl md:text-2xl text-gray-300 italic fade-in fade-in-delay-2"
+                >
+                    Capturing the poetry of moments between worlds
+                </p>
+                <div class="mt-12 fade-in fade-in-delay-3">
+                    <a
+                        href="#work"
+                        class="inline-block border border-white/30 px-10 py-4 text-xs uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-all duration-500"
+                    >
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+            <div
+                class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+            >
+                <svg
+                    class="w-5 h-5 text-white/50"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Selected Work -->
+        <section id="work" class="py-32 md:py-48 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto">
+                <div
+                    class="flex flex-col md:flex-row md:items-end md:justify-between mb-20 md:mb-32"
+                >
+                    <div>
+                        <p
+                            class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4 fade-in"
+                        >
+                            Selected Projects
+                        </p>
+                        <h2
+                            class="font-display text-4xl md:text-5xl lg:text-6xl fade-in fade-in-delay-1"
+                        >
+                            Featured Work
+                        </h2>
+                    </div>
+                    <p
+                        class="font-accent text-lg text-gray-400 mt-6 md:mt-0 italic fade-in fade-in-delay-2 max-w-md"
+                    >
+                        A curated selection of projects exploring light, form,
+                        and the spaces between.
+                    </p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <!-- Project 1 -->
+                    <article class="group fade-in">
+                        <div class="image-reveal overflow-hidden mb-6">
+                            <img
+                                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=900&q=80"
+                                alt="Misty forest at dawn"
+                                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl mb-1">
+                                    Silent Forests
+                                </h3>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Nature Series — 2024
+                                </p>
+                            </div>
+                            <svg
+                                class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1"
+                                    d="M7 17L17 7M17 7H7M17 7v10"
+                                ></path>
+                            </svg>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="group fade-in md:mt-24">
+                        <div class="image-reveal overflow-hidden mb-6">
+                            <img
+                                src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=900&q=80"
+                                alt="Architectural shadows and light"
+                                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl mb-1">
+                                    Concrete Dreams
+                                </h3>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Architecture — 2024
+                                </p>
+                            </div>
+                            <svg
+                                class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1"
+                                    d="M7 17L17 7M17 7H7M17 7v10"
+                                ></path>
+                            </svg>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="group fade-in">
+                        <div class="image-reveal overflow-hidden mb-6">
+                            <img
+                                src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=900&q=80"
+                                alt="Minimal portrait with dramatic lighting"
+                                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl mb-1">
+                                    Unveiled
+                                </h3>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Portrait Series — 2023
+                                </p>
+                            </div>
+                            <svg
+                                class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1"
+                                    d="M7 17L17 7M17 7H7M17 7v10"
+                                ></path>
+                            </svg>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="group fade-in md:mt-24">
+                        <div class="image-reveal overflow-hidden mb-6">
+                            <img
+                                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80"
+                                alt="Lake reflection at golden hour"
+                                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl mb-1">
+                                    Still Waters
+                                </h3>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Landscape — 2023
+                                </p>
+                            </div>
+                            <svg
+                                class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1"
+                                    d="M7 17L17 7M17 7H7M17 7v10"
+                                ></path>
+                            </svg>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editorial Section -->
+        <section class="py-32 md:py-48 px-6 md:px-12 bg-off-black">
+            <div class="max-w-7xl mx-auto">
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center"
+                >
+                    <div class="order-2 lg:order-1">
+                        <img
+                            src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=900&q=80"
+                            alt="Camera and photography equipment in minimal setting"
+                            class="w-full aspect-[3/4] object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <p
+                            class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 fade-in"
+                        >
+                            The Approach
+                        </p>
+                        <h2
+                            class="font-display text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight fade-in fade-in-delay-1"
+                        >
+                            Photography is the art of making silence visible
+                        </h2>
+                        <div
+                            class="space-y-6 font-accent text-lg text-gray-300 italic"
+                        >
+                            <p class="fade-in fade-in-delay-2">
+                                Every frame begins with a moment of stillness. I
+                                wait for the light to speak, for the composition
+                                to reveal itself.
+                            </p>
+                            <p class="fade-in fade-in-delay-3">
+                                Based in Munich, my work has been featured in
+                                Vogue, Monocle, and Wallpaper*. I collaborate
+                                with brands and individuals who seek to capture
+                                something timeless.
+                            </p>
+                        </div>
+                        <div class="mt-12 flex gap-12 fade-in fade-in-delay-3">
+                            <div>
+                                <p class="font-display text-4xl mb-1">12+</p>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Years
+                                </p>
+                            </div>
+                            <div>
+                                <p class="font-display text-4xl mb-1">80+</p>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Projects
+                                </p>
+                            </div>
+                            <div>
+                                <p class="font-display text-4xl mb-1">15</p>
+                                <p
+                                    class="text-xs uppercase tracking-widest text-gray-400"
+                                >
+                                    Awards
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-32 md:py-48 px-6 md:px-12">
+            <div class="max-w-4xl mx-auto text-center">
+                <p
+                    class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 fade-in"
+                >
+                    About
+                </p>
+                <h2
+                    class="font-display text-4xl md:text-5xl lg:text-6xl mb-12 fade-in fade-in-delay-1"
+                >
+                    Elena Voss
+                </h2>
+                <div
+                    class="space-y-8 font-accent text-xl text-gray-300 italic leading-relaxed"
+                >
+                    <p class="fade-in fade-in-delay-2">
+                        Born in Zurich and trained at the Berlin University of
+                        the Arts, I have spent over a decade exploring the
+                        intersection of light and emotion through my lens.
+                    </p>
+                    <p class="fade-in fade-in-delay-3">
+                        My work lives in the quiet spaces — the breath between
+                        heartbeats, the moment before dawn, the shadow that
+                        gives form to light. I believe the most powerful images
+                        are not seen but felt.
+                    </p>
+                </div>
+                <div class="mt-16 fade-in">
+                    <img
+                        src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=400&q=80"
+                        alt="Elena Voss portrait"
+                        class="w-32 h-32 mx-auto rounded-full object-cover grayscale mb-8"
+                        loading="lazy"
+                    />
+                    <p
+                        class="text-xs uppercase tracking-[0.25em] text-gray-400"
+                    >
+                        Munich, Germany
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="py-32 md:py-48 px-6 md:px-12 bg-off-black">
+            <div class="max-w-4xl mx-auto text-center">
+                <svg
+                    class="w-8 h-8 mx-auto mb-12 text-gray-600"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+                    ></path>
+                </svg>
+                <blockquote
+                    class="font-accent text-2xl md:text-3xl lg:text-4xl text-gray-200 italic leading-relaxed mb-12 fade-in"
+                >
+                    "Elena doesn't just take photographs — she captures the soul
+                    of a moment and preserves it forever. Her work transforms
+                    the ordinary into the extraordinary."
+                </blockquote>
+                <div class="fade-in fade-in-delay-1">
+                    <p class="font-display text-lg">Isabelle Moreau</p>
+                    <p
+                        class="text-xs uppercase tracking-widest text-gray-400 mt-1"
+                    >
+                        Editor-in-Chief, Monocle
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="py-32 md:py-48 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 md:mb-32">
+                    <p
+                        class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 fade-in"
+                    >
+                        Services
+                    </p>
+                    <h2
+                        class="font-display text-4xl md:text-5xl lg:text-6xl fade-in fade-in-delay-1"
+                    >
+                        What I Offer
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-px bg-gray-600 mx-auto mb-8"></div>
+                        <h3 class="font-display text-2xl mb-4">Editorial</h3>
+                        <p class="font-accent text-lg text-gray-400 italic">
+                            High-fashion and editorial photography for
+                            magazines, campaigns, and brand storytelling.
+                        </p>
+                    </div>
+                    <div class="text-center fade-in fade-in-delay-1">
+                        <div class="w-16 h-px bg-gray-600 mx-auto mb-8"></div>
+                        <h3 class="font-display text-2xl mb-4">Portrait</h3>
+                        <p class="font-accent text-lg text-gray-400 italic">
+                            Intimate, character-driven portraits that reveal the
+                            essence of individuals and couples.
+                        </p>
+                    </div>
+                    <div class="text-center fade-in fade-in-delay-2">
+                        <div class="w-16 h-px bg-gray-600 mx-auto mb-8"></div>
+                        <h3 class="font-display text-2xl mb-4">Fine Art</h3>
+                        <p class="font-accent text-lg text-gray-400 italic">
+                            Limited edition prints and commissioned works for
+                            private collectors and galleries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 md:py-48 px-6 md:px-12 bg-off-black">
+            <div class="max-w-4xl mx-auto text-center">
+                <p
+                    class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-6 fade-in"
+                >
+                    Get in Touch
+                </p>
+                <h2
+                    class="font-display text-4xl md:text-5xl lg:text-6xl mb-8 fade-in fade-in-delay-1"
+                >
+                    Let's Create Together
+                </h2>
+                <p
+                    class="font-accent text-xl text-gray-400 italic mb-16 max-w-2xl mx-auto fade-in fade-in-delay-2"
+                >
+                    Whether you have a project in mind or simply wish to say
+                    hello, I'd love to hear from you.
+                </p>
+                <a
+                    href="mailto:hello@elenavoss.com"
+                    class="inline-block border border-white/30 px-12 py-5 text-xs uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-all duration-500 fade-in fade-in-delay-3"
+                >
+                    hello@elenavoss.com
+                </a>
+                <div
+                    class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 fade-in"
+                >
+                    <div>
+                        <p
+                            class="text-xs uppercase tracking-widest text-gray-400 mb-3"
+                        >
+                            Studio
+                        </p>
+                        <p class="font-accent text-lg text-gray-300 italic">
+                            Munich, Germany
+                        </p>
+                    </div>
+                    <div>
+                        <p
+                            class="text-xs uppercase tracking-widest text-gray-400 mb-3"
+                        >
+                            Social
+                        </p>
+                        <div class="flex items-center justify-center gap-6">
+                            <a
+                                href="#"
+                                class="text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
+                                >Instagram</a
+                            >
+                            <a
+                                href="#"
+                                class="text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
+                                >Behance</a
+                            >
+                        </div>
+                    </div>
+                    <div>
+                        <p
+                            class="text-xs uppercase tracking-widest text-gray-400 mb-3"
+                        >
+                            Representation
+                        </p>
+                        <p class="font-accent text-lg text-gray-300 italic">
+                            Galerie Moderne
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 px-6 md:px-12 border-t border-gray-800">
+            <div
+                class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6"
+            >
+                <p class="font-display text-sm tracking-widest uppercase">
+                    Elena Voss
+                </p>
+                <p class="text-xs text-gray-500 uppercase tracking-widest">
+                    &copy; <span id="year"></span> All Rights Reserved
+                </p>
+                <a
+                    href="#hero"
+                    class="text-xs text-gray-500 hover:text-white transition-colors uppercase tracking-widest"
+                >
+                    Back to Top
+                </a>
+            </div>
+        </footer>
+
+        <script>
+            // Set current year
+            document.getElementById("year").textContent =
+                new Date().getFullYear();
+
+            // Navigation background on scroll
+            const nav = document.getElementById("nav");
+            let lastScroll = 0;
+
+            window.addEventListener(
+                "scroll",
+                () => {
+                    const currentScroll = window.pageYOffset;
+
+                    if (currentScroll > 100) {
+                        nav.style.background = "rgba(10, 10, 10, 0.95)";
+                        nav.style.backdropFilter = "blur(10px)";
+                        nav.style.borderBottom =
+                            "1px solid rgba(255,255,255,0.05)";
+                    } else {
+                        nav.style.background = "transparent";
+                        nav.style.backdropFilter = "none";
+                        nav.style.borderBottom = "none";
+                    }
+
+                    lastScroll = currentScroll;
+                },
+                { passive: true },
+            );
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const menuLine1 = document.getElementById("menu-line-1");
+            const menuLine2 = document.getElementById("menu-line-2");
+            let menuOpen = false;
+
+            menuToggle.addEventListener("click", () => {
+                menuOpen = !menuOpen;
+
+                if (menuOpen) {
+                    mobileMenu.style.opacity = "1";
+                    mobileMenu.style.pointerEvents = "auto";
+                    menuLine1.style.transform =
+                        "rotate(45deg) translate(3px, 3px)";
+                    menuLine2.style.transform =
+                        "rotate(-45deg) translate(3px, -3px)";
+                    document.body.style.overflow = "hidden";
+                } else {
+                    mobileMenu.style.opacity = "0";
+                    mobileMenu.style.pointerEvents = "none";
+                    menuLine1.style.transform = "none";
+                    menuLine2.style.transform = "none";
+                    document.body.style.overflow = "";
+                }
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+                link.addEventListener("click", () => {
+                    menuOpen = false;
+                    mobileMenu.style.opacity = "0";
+                    mobileMenu.style.pointerEvents = "none";
+                    menuLine1.style.transform = "none";
+                    menuLine2.style.transform = "none";
+                    document.body.style.overflow = "";
+                });
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1,
+            };
+
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll(".fade-in").forEach((el) => {
+                fadeObserver.observe(el);
+            });
+
+            // Image reveal animation
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("revealed");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.2 },
+            );
+
+            document.querySelectorAll(".image-reveal").forEach((el) => {
+                revealObserver.observe(el);
+            });
+
+            // Parallax effect on hero image
+            const heroImage = document.getElementById("hero-image");
+
+            window.addEventListener(
+                "scroll",
+                () => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * 0.3;
+
+                    if (scrolled < window.innerHeight) {
+                        heroImage.style.transform = `scale(1.05) translateY(${rate}px)`;
+                    }
+                },
+                { passive: true },
+            );
+        </script>
+    </body>
+</html>
